@@ -1,0 +1,6 @@
+venv
+*/simulationFolder/*
+*.log
+*.ipynb
+
+
