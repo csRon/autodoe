@@ -1,4 +1,4 @@
-from experimentalPlan import ExperimentalPlan
+from .experimentalPlan import ExperimentalPlan
 
 class CustomPlan(ExperimentalPlan):
     def __init__(self, config):

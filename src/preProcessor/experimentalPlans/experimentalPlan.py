@@ -2,14 +2,12 @@ import pandas as pd
 import numpy as np
 import regex as re
 import pyDOE2 as pydoe
-
 import sys
-sys.path.insert(0, '../../config')
-from config import Config
-from customPlan import CustomPlan
-from customRawPlan import CustomRawPlan
-from pydoePlan import PydoePlan
+#sys.path.insert(0,"../..")
 
+# the usual import horror in python
+# https://stackoverflow.com/questions/35166821/valueerror-attempted-relative-import-beyond-top-level-package
+from ...config.config import Config
 
 class ExperimentalPlan:
     '''
@@ -26,29 +24,17 @@ class ExperimentalPlan:
     '''
 
     def __init__(self, config: Config):
-        self.factorFile = config.factorFile
+        self.factorFile = config.pathToFactorFile
         self.planType = config.planType
 
         self.rawPlan = np.array(0)
         self.factorPlan = pd.DataFrame()
 
-        self.nrTests = 0
-        self.factorList = []
+        self.factorList = list(pd.read_csv(self.factorFile, index_col='name').index)
+        self.nrTests = len(self.factorList)
 
-    @staticmethod
-    def createExperimentalPlan(config: Config):
-        if config.planType == 'custom':
-            return CustomPlan(config)
-        elif config.planType == 'customRaw':
-            return CustomRawPlan(config)
-        else:
-            return PydoePlan(config)
+        print('\t\tExperimental Plan created: plan_%s.csv'%config.planType )
 
-    def setFactorList(self, pathToFactorFile):
-        self.factorList = list(pd.read_csv(pathToFactorFile, index_col='Factor').index)
-
-    def setNrTests(self):
-        self.nrTests = len(self.factorPlan.index)
 
     def convertPlanToRangeZeroOne(self):
         rawPlanRangeZeroOne = np.zeros((len(self.rawPlan[:, 0]), len(self.rawPlan[0, :])))
@@ -72,9 +58,10 @@ class ExperimentalPlan:
     def getFactorValuesOfTestRun(self, testNr):
         return dict(self.factorPlan.iloc[testNr])
 
-    def checkFactorMatchingToRawPlan(self, pathToFactorFile):
+    def checkFactorMatchingToRawPlan(self):
         # checking that numbers of factors in factors.csv matches the
         # configuration parameters from *.conf
+
         nrFactorsCSV = len(self.factorList)
         nrFactorsRawPlan = len(self.rawPlan[0, :])
         if nrFactorsCSV != nrFactorsRawPlan:
@@ -82,7 +69,7 @@ class ExperimentalPlan:
                 'The number of factors in factors.csv does not match to the plan created with config.conf.')
 
     def convertRawPlanToFactorPlan(self, pathToFactorFile):
-        dfFactors = pd.read_csv(pathToFactorFile, index_col='Factor')
+        dfFactors = pd.read_csv(pathToFactorFile, index_col='name')
 
         self.factorPlan = pd.DataFrame(self.rawPlan.copy())
         self.factorPlan.columns = self.factorList

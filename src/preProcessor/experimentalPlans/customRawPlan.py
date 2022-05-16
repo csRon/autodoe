@@ -1,4 +1,6 @@
-from experimentalPlan import ExperimentalPlan
+import re
+
+from .experimentalPlan import ExperimentalPlan
 
 class CustomRawPlan(ExperimentalPlan):
     def __init__(self, config):

@@ -21,30 +21,32 @@ class Config():
         if self.processing:
             self.processorSettings = self.__parseProcessorConfig()
 
+        print('\tConfig file read')
 
-    def __parseGeneralConfig(self, pathToConfig:str):
+
+    def __parseGeneralConfig(self):
         config = configparser.ConfigParser()
-        config.read(pathToConfig)
+        config.read('./config.conf')
 
-        self.preProcessing = config['GENERAL']['preprocessing'] == 'true'
-        self.processing = config['GENERAL']['processing'] == 'true'
+        self.preProcessing = (config['GENERAL']['preProcessing'] in ['true', 'True', 'TRUE'])
+        self.processing = (config['GENERAL']['processing'] in ['true', 'True', 'TRUE'])
 
-        self.pathToParameterFile = config['GENERAL']['pathtoparameterfile']
-        self.pathToFactorFile = config['GENERAL']['pathtofactorfile']
-        self.pathToSimulationFolder = config['GENERAL']['pathtosimulationfolder']
-        self.pathToTemplateFolder = config['GENERAL']['pathtotemplatenfolder']
+        self.pathToParameterFile = config['GENERAL']['pathToParameterFile']
+        self.pathToFactorFile = config['GENERAL']['pathToFactorFile']
+        self.pathToSimulationFolder = config['GENERAL']['pathToSimulationFolder']
+        self.pathToTemplateFolder = config['GENERAL']['pathToTemplateFolder']
 
 
-    def __parsePreProcessorConfig(self, pathToConfig:str):
+    def __parsePreProcessorConfig(self):
         config = configparser.ConfigParser()
-        config.read(pathToConfig)
+        config.read('./config.conf')
 
-        for key in config['PRE_PROCESSOR']:
-            self.planSettings[key] = config['PRE_PROCESSOR'][key]
+        self.planType = config['PRE_PROCESSOR']['planType']
+        self.planCommand = config['PRE_PROCESSOR']['planCommand']
 
-    def __parseProcessorConfig(self, pathToConfig: str):
+    def __parseProcessorConfig(self):
         config = configparser.ConfigParser()
-        config.read(pathToConfig)
+        config.read('./config.conf')
 
         for key in config['PROCESSOR']:
             self.processorSettings[key] = config['PROCESSOR'][key]
