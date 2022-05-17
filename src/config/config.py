@@ -36,13 +36,17 @@ class Config():
         self.pathToSimulationFolder = config['GENERAL']['pathToSimulationFolder']
         self.pathToTemplateFolder = config['GENERAL']['pathToTemplateFolder']
 
-
     def __parsePreProcessorConfig(self):
         config = configparser.ConfigParser()
         config.read('./config.conf')
 
         self.planType = config['PRE_PROCESSOR']['planType']
-        self.planCommand = config['PRE_PROCESSOR']['planCommand']
+        # settings for pydoe based plans
+        if 'pydoe' in self.planType.lower():
+            self.planCommand = config['PRE_PROCESSOR']['planCommand']
+        # settings for custom plans
+        if 'custom' in self.planType.lower():
+            self.planPath = config['PRE_PROCESSOR']['planPath']
 
     def __parseProcessorConfig(self):
         config = configparser.ConfigParser()

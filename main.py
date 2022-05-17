@@ -16,7 +16,5 @@ def main(argv):
     if config.preProcessing==True:
         preProcessor = PreProcessor(config)
 
-    print('automizedDoE done')
-
 if __name__ == "__main__":
     main(sys.argv[1:])
