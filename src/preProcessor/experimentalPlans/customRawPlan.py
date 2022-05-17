@@ -1,4 +1,5 @@
 import re
+import pandas as pd
 
 from .experimentalPlan import ExperimentalPlan
 
@@ -12,7 +13,7 @@ class CustomRawPlan(ExperimentalPlan):
         self.checkFactorMatchingToRawPlan(self.factorFile)
         self.convertRawPlanToFactorPlan(self.factorFile)
         self.setNrTests()
-        self.printPlanToFile('./plan_Custom-Raw.csv')
+        self.printPlanToFile('plan_Custom-Raw.csv')
 
     def __readRawPlanFromFile(self):
         rawPlanPath = re.findall(r'\(.*?\)', self.planType)

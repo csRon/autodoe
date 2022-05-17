@@ -30,11 +30,16 @@ class ExperimentalPlan:
         self.rawPlan = np.array(0)
         self.factorPlan = pd.DataFrame()
 
-        self.factorList = list(pd.read_csv(self.factorFile, index_col='name').index)
-        self.nrTests = len(self.factorList)
+        self.factorList = []
+        self.nrTests = 0
 
         print('\t\tExperimental Plan created: plan_%s.csv'%config.planType )
 
+    def setNrTests(self):
+        self.nrTests = len(self.rawPlan)
+
+    def setFactorList(self):
+        self.factorList = list(pd.read_csv(self.factorFile, index_col='name').index)
 
     def convertPlanToRangeZeroOne(self):
         rawPlanRangeZeroOne = np.zeros((len(self.rawPlan[:, 0]), len(self.rawPlan[0, :])))
