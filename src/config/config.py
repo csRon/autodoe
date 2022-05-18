@@ -52,8 +52,8 @@ class Config():
         config = configparser.ConfigParser()
         config.read('./config.conf')
 
-        for key in config['PROCESSOR']:
-            self.processorSettings[key] = config['PROCESSOR'][key]
+        self.nWorker = int(config['PROCESSOR']['nWorker'])
+        self.executeTests = config['PROCESSOR']['executeTests']
 
     def __checkConfig(self):
         # TODO
