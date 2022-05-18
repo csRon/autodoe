@@ -19,8 +19,6 @@ class Processor:
         self.workerList = []
         self.__organizeWorker(config.pathToSimulationFolder)
 
-
-
     def __parseExecuteTests(self, executeTestString: str, pathToSimulationFolder: str) -> list:
         # 'all' takes all foldes inside the simulation folder regardless how their naming
         if 'all' in executeTestString.lower():
@@ -65,29 +63,36 @@ class Processor:
             pass
             # TODO: catch invalid statement
 
-
     def __organizeWorker(self, pathToSimFolder:str):
         # prepare list of worker and fill them with None
         for workerNr in range(self.nWorker):
             self.workerList.append(None)
 
+        # loop through test as long as they are not finished
         testNr = 0
         while testNr < len(self.executeTests):
+
+            # loop through the workers
             for workerNr in range(self.nWorker):
                 if testNr >= len(self.executeTests):
                     break
 
-                pathToWorkDir = pathToSimFolder + '/' + self.executeTests[testNr]
                 time.sleep(1)
+                pathToWorkDir = pathToSimFolder + '/' + self.executeTests[testNr]
+
+                # this happens in the initial loop run as all items are None
                 if self.workerList[workerNr] is None:
                     self.workerList[workerNr] = self.__spawnWorker(pathToWorkDir, testNr)
                     testNr += 1
                     continue
 
+                # join to look if worker is alive in if
                 self.workerList[workerNr].join(timeout=0)
+                # if worker has finished start new process in worker list
                 if not self.workerList[workerNr].is_alive():
                     self.workerList[workerNr] = self.__spawnWorker(pathToWorkDir, testNr)
                     testNr += 1
+                # else kill the finished process (this is maybe not necessary)
                 else:
                     self.workerList[workerNr].kill()
 
