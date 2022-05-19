@@ -28,7 +28,6 @@ class PostProcessor:
             os.chdir(pathToWorkDir)
             # run extract script, currently only python possible
             subprocess.run(['python3 %s'%extractScript], shell=True)
-            print(simFolder)
             self.__collectResults()
 
             # go back to base dir
