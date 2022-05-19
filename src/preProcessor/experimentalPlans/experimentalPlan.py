@@ -57,8 +57,12 @@ class ExperimentalPlan:
 
         self.rawPlan = rawPlanRangeZeroOne
 
-    def printPlanToFile(self, pathToPlanFile):
+    def printFactorPlanToFile(self, pathToPlanFile):
         self.factorPlan.to_csv(pathToPlanFile)
+
+    def printRawPlanToFile(self, pathToRawPlanFile):
+        pd.DataFrame(self.rawPlan).to_csv(pathToRawPlanFile,
+                                          header=self.factorList)
 
     def getFactorValuesOfTestRun(self, testNr):
         return dict(self.factorPlan.iloc[testNr])

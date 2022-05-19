@@ -9,12 +9,12 @@ class CustomRawPlan(ExperimentalPlan):
 
         self.__readRawPlanFromFile()
         self.convertPlanToRangeZeroOne()
-        self.setFactorList(self.factorFile)
-        self.checkFactorMatchingToRawPlan(self.factorFile)
-        self.convertRawPlanToFactorPlan(self.factorFile)
+        self.setFactorList()
+        self.checkFactorMatchingToRawPlan()
+        self.convertRawPlanToFactorPlan()
         self.setNrTests()
-        self.printPlanToFile('plan_Custom-Raw.csv')
+        self.printFactorPlanToFile('factorPlan_%s.csv' % self.planType)
 
     def __readRawPlanFromFile(self):
-        rawPlanPath = re.findall(r'\(.*?\)', self.planType)
+        rawPlanPath = re.findall(r'\(.*?\)', self.planType)[0]
         self.rawPlan = pd.read_csv(rawPlanPath, index_col=0).to_numpy()

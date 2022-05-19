@@ -11,6 +11,7 @@ class CustomPlan(ExperimentalPlan):
         self.setFactorList()
         self.setNrTests()
         self.__printFactorsToFile(config.pathToFactorFile)
+        self.printRawPlanToFile('rawPlan_%s.csv' % self.planType)
 
     def __readPlanFromFile(self, planPath:str):
         self.factorPlan = pd.read_csv(planPath, index_col=0)
