@@ -17,7 +17,7 @@ class Processor:
         print('\t\tExecuting tests %s'%(','.join(map(str, self.executeTests))))
 
         self.workerList = []
-        self.__organizeWorker(config.pathToSimulationFolder)
+        self.__organizeWorker(config.pathToSimulationFolder, config.startScript)
 
     def __parseExecuteTests(self, executeTestString: str, pathToSimulationFolder: str) -> list:
         # 'all' takes all foldes inside the simulation folder regardless how their naming
@@ -63,7 +63,7 @@ class Processor:
             pass
             # TODO: catch invalid statement
 
-    def __organizeWorker(self, pathToSimFolder:str):
+    def __organizeWorker(self, pathToSimFolder:str, startScript:str):
         # prepare list of worker and fill them with None
         for workerNr in range(self.nWorker):
             self.workerList.append(None)
@@ -77,12 +77,11 @@ class Processor:
                 if testNr >= len(self.executeTests):
                     break
 
-                time.sleep(1)
                 pathToWorkDir = pathToSimFolder + '/' + self.executeTests[testNr]
 
                 # this happens in the initial loop run as all items are None
                 if self.workerList[workerNr] is None:
-                    self.workerList[workerNr] = self.__spawnWorker(pathToWorkDir, testNr)
+                    self.workerList[workerNr] = self.__spawnWorker(pathToWorkDir, startScript)
                     testNr += 1
                     continue
 
@@ -90,13 +89,13 @@ class Processor:
                 self.workerList[workerNr].join(timeout=0)
                 # if worker has finished start new process in worker list
                 if not self.workerList[workerNr].is_alive():
-                    self.workerList[workerNr] = self.__spawnWorker(pathToWorkDir, testNr)
+                    self.workerList[workerNr] = self.__spawnWorker(pathToWorkDir, startScript)
                     testNr += 1
                 # else kill the finished process (this is maybe not necessary)
                 else:
                     self.workerList[workerNr].kill()
 
-    def __spawnWorker(self, pathToWorkDir:str, testNr:int) -> Process:
-        process = Process(target=Worker, args=(pathToWorkDir,testNr,))
+    def __spawnWorker(self, pathToWorkDir:str, startScript:str) -> Process:
+        process = Process(target=Worker, args=(pathToWorkDir,startScript,))
         process.start()
         return process
