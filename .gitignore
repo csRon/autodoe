@@ -1,6 +1,7 @@
 venv
 */simulationFolder/*
+*/results/*
 *.log
 *.ipynb
-*plan*.csv
+*Plan*.csv
 

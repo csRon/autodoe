@@ -4,7 +4,7 @@ import os
 from src.config.config import Config
 from src.preProcessor.preProcessor import PreProcessor
 from src.processor.processor import Processor
-
+from src.postProcessor.postProcessor import PostProcessor
 
 def main(argv):
     print('automizedDoE started')
@@ -20,6 +20,11 @@ def main(argv):
 
     if config.processing == True:
         processor = Processor(config)
+
+    if config.postProcessing == True:
+        postProcessor = PostProcessor(config)
+
+    print('automizedDoE done')
 
 if __name__ == "__main__":
     main(sys.argv[1:])

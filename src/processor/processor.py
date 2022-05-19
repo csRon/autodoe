@@ -14,10 +14,15 @@ class Processor:
 
         self.nWorker = config.nWorker
         self.executeTests = self.__parseExecuteTests(config.executeTests, config.pathToSimulationFolder)
+
         print('\t\tExecuting tests %s'%(','.join(map(str, self.executeTests))))
 
         self.workerList = []
         self.__organizeWorker(config.pathToSimulationFolder, config.startScript)
+
+        print('\t\tExecuting tests done')
+
+        print('\tProcessor done')
 
     def __parseExecuteTests(self, executeTestString: str, pathToSimulationFolder: str) -> list:
         # 'all' takes all foldes inside the simulation folder regardless how their naming
@@ -96,6 +101,7 @@ class Processor:
                     self.workerList[workerNr].kill()
 
     def __spawnWorker(self, pathToWorkDir:str, startScript:str) -> Process:
+        print('\t\t\t Simulation started: %s' % pathToWorkDir)
         process = Process(target=Worker, args=(pathToWorkDir,startScript,))
         process.start()
         return process

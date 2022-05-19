@@ -55,9 +55,7 @@ class Config():
         self.executeTests = config['PROCESSOR']['executeTests']
 
     def __parsePostProcessorConfig(self, config: configparser):
-        self.startScript = config['PROCESSOR']['startScript']
-        self.nWorker = int(config['PROCESSOR']['nWorker'])
-        self.executeTests = config['PROCESSOR']['executeTests']
+        self.extractScript = config['POST_PROCESSOR']['extractScript']
 
     def __checkConfig(self):
         # TODO
