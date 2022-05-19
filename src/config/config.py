@@ -5,41 +5,42 @@ class Config():
     def __init__(self):
         self.__checkConfig()
 
-        self.preProcessing = True
-        self.processing = True
+        self.preProcessing = False
+        self.processing = False
+        self.postProcessing = False
 
         self.pathToParameterFile = ''
         self.pathToFactorFile = ''
         self.pathToSimulationFolder = ''
 
-        self.__parseGeneralConfig()
-
-        if self.preProcessing:
-            self.planSettings = {}
-            self.__parsePreProcessorConfig()
-
-        if self.processing:
-            self.processorSettings = self.__parseProcessorConfig()
-
-        print('\tConfig file read')
-
-
-    def __parseGeneralConfig(self):
         config = configparser.ConfigParser()
         config.read('./config.conf')
 
+        self.__parseGeneralConfig(config)
+
+        if self.preProcessing:
+            self.planSettings = {}
+            self.__parsePreProcessorConfig(config)
+
+        if self.processing:
+            self.__parseProcessorConfig(config)
+
+        if self.postProcessing:
+            self.__parsePostProcessorConfig(config)
+
+        print('\tConfig file read')
+
+    def __parseGeneralConfig(self, config: configparser):
         self.preProcessing = (config['GENERAL']['preProcessing'] in ['true', 'True', 'TRUE'])
         self.processing = (config['GENERAL']['processing'] in ['true', 'True', 'TRUE'])
+        self.postProcessing = (config['GENERAL']['postProcessing'] in ['true', 'True', 'TRUE'])
 
         self.pathToParameterFile = config['GENERAL']['pathToParameterFile']
         self.pathToFactorFile = config['GENERAL']['pathToFactorFile']
         self.pathToSimulationFolder = config['GENERAL']['pathToSimulationFolder']
         self.pathToTemplateFolder = config['GENERAL']['pathToTemplateFolder']
 
-    def __parsePreProcessorConfig(self):
-        config = configparser.ConfigParser()
-        config.read('./config.conf')
-
+    def __parsePreProcessorConfig(self, config: configparser):
         self.planType = config['PRE_PROCESSOR']['planType']
         # settings for pydoe based plans
         if 'pydoe' in self.planType.lower():
@@ -48,10 +49,13 @@ class Config():
         if 'custom' in self.planType.lower():
             self.planPath = config['PRE_PROCESSOR']['planPath']
 
-    def __parseProcessorConfig(self):
-        config = configparser.ConfigParser()
-        config.read('./config.conf')
+    def __parseProcessorConfig(self, config: configparser):
+        self.startScript = config['PROCESSOR']['startScript']
+        self.nWorker = int(config['PROCESSOR']['nWorker'])
+        self.executeTests = config['PROCESSOR']['executeTests']
 
+    def __parsePostProcessorConfig(self, config: configparser):
+        self.startScript = config['PROCESSOR']['startScript']
         self.nWorker = int(config['PROCESSOR']['nWorker'])
         self.executeTests = config['PROCESSOR']['executeTests']
 
