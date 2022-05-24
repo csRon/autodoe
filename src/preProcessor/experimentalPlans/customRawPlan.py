@@ -13,7 +13,7 @@ class CustomRawPlan(ExperimentalPlan):
         self.checkFactorMatchingToRawPlan()
         self.convertRawPlanToFactorPlan()
         self.setNrTests()
-        self.printFactorPlanToFile('factorPlan_%s.csv' % self.planType)
+        self.printFactorPlanToFile('factorPlan.csv')
 
     def __readRawPlanFromFile(self):
         rawPlanPath = re.findall(r'\(.*?\)', self.planType)[0]

@@ -26,13 +26,13 @@ class PreProcessor:
 
     def __createSimulationFolders(self):
         for testNr in range(self.experimentalPlan.nrTests):
-            pathToTestNrFolder = self.config.pathToSimulationFolder + '/' + str(testNr)
+            pathToTestNrFolder = 'simulationFolder/' + str(testNr)
             os.makedirs(pathToTestNrFolder, exist_ok=True)
             self.__copyTemplatesToSimulationFolders(pathToTestNrFolder, testNr)
-        print('\t\tFolder created, templates copied and tokens replaced: %s'%self.config.pathToSimulationFolder)
+        print('\t\tFolder created, templates copied and tokens replaced: simulationFolder')
 
     def __copyTemplatesToSimulationFolders(self, pathToTestNrFolder: str, testNr:int):
-        shutil.copytree(self.config.pathToTemplateFolder, pathToTestNrFolder,
+        shutil.copytree('templates', pathToTestNrFolder,
                         dirs_exist_ok=True)
         self.__replaceTemplateTokensInSimulationFolder(pathToTestNrFolder, testNr)
 

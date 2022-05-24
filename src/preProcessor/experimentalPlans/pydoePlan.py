@@ -12,8 +12,8 @@ class PydoePlan(ExperimentalPlan):
         self.convertPlanToRangeZeroOne()
         self.checkFactorMatchingToRawPlan()
         self.convertRawPlanToFactorPlan(self.factorFile)
-        self.printFactorPlanToFile('factorPlan_%s.csv' % self.planType)
-        self.printRawPlanToFile('rawPlan_%s.csv' % self.planType)
+        self.printFactorPlanToFile('factorPlan.csv')
+        self.printRawPlanToFile('rawPlan.csv')
 
 
     def __setRawPlan(self, planCommand:str):

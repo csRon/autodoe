@@ -14,7 +14,7 @@ class PostProcessor:
         self.__createResultsDir()
         self.collectedResults = pd.DataFrame()
         print('\t\tCollect results from simulationFolder')
-        self.__extractResultsInSimFolder(config.pathToSimulationFolder, config.extractScript)
+        self.__extractResultsInSimFolder('simulationFolder', config.extractScript)
         self.__printResultsToCsv()
 
         print('\tPostProcessor done')

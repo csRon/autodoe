@@ -24,7 +24,7 @@ class ExperimentalPlan:
     '''
 
     def __init__(self, config: Config):
-        self.factorFile = config.pathToFactorFile
+        self.factorFile = 'factors.csv'
         self.planType = config.planType
 
         self.rawPlan = np.array(0)

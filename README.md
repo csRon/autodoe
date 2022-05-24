@@ -13,17 +13,17 @@ Before you begin, ensure you have met the following requirements:
 
 
 ## Installing automizedDoE
-You can install it easily via pip:
-```
-pip3 install automizedDoE
-```
-Or clone the git repo directly and run the program in a virtual environment:
+You can clone the git repo and run the program in a virtual environment:
 ```
 git clone https://github.com/csRon/automizedDoE
 cd automizedDoE
 python3 -m venv .venv
-`source .venv/bin/activate
-`pip install -r requirements.txt
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+Test you installation by running the first example `helloWorld` by running
+```
+automizedDoE ./exmples/helloWorld
 ```
 
 ## Getting started
@@ -42,13 +42,14 @@ A working folder must be created with the following content (in some exceptional
 For the beginning just copy an existing exmample folder (e.g. helloDoE) to your preferred location and modify the files based on your needs. 
 
 ### Starting automizedDoE
-Just run 
+Just run the following command directly inside the automizedDoE folder
 ```
 automizedDoE /path/to/your/working/folder
 ```
+All output will also be in your selected working folder.
 
 ### Results
-The results will be 2 files + 2 folders:
+All output will be in your selected working folder. The results will be 2 files + 2 folders:
 * `factorPlan.csv`: file contains the raw experimental plan with values between min and max of the factor value
 * `rawPlan.csv`: file contains the raw experimental plan with values between 0 and 1
 * `simulationFolder`: folder contains raw experiment / simulation results for each run of your experimental plan

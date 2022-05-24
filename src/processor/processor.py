@@ -13,12 +13,12 @@ class Processor:
         print('\tProcessor started')
 
         self.nWorker = config.nWorker
-        self.executeTests = self.__parseExecuteTests(config.executeTests, config.pathToSimulationFolder)
+        self.executeTests = self.__parseExecuteTests(config.executeTests, 'simulationFolder')
 
         print('\t\tExecuting tests %s'%(','.join(map(str, self.executeTests))))
 
         self.workerList = []
-        self.__organizeWorker(config.pathToSimulationFolder, config.startScript)
+        self.__organizeWorker('simulationFolder', config.startScript)
 
         print('\t\tExecuting tests done')
 
@@ -96,9 +96,6 @@ class Processor:
                 if not self.workerList[workerNr].is_alive():
                     self.workerList[workerNr] = self.__spawnWorker(pathToWorkDir, startScript)
                     testNr += 1
-                # else kill the finished process (this is maybe not necessary)
-                else:
-                    self.workerList[workerNr].kill()
 
     def __spawnWorker(self, pathToWorkDir:str, startScript:str) -> Process:
         print('\t\t\t Simulation started: %s' % pathToWorkDir)

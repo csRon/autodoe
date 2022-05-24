@@ -35,11 +35,6 @@ class Config():
         self.processing = (config['GENERAL']['processing'] in ['true', 'True', 'TRUE'])
         self.postProcessing = (config['GENERAL']['postProcessing'] in ['true', 'True', 'TRUE'])
 
-        self.pathToParameterFile = config['GENERAL']['pathToParameterFile']
-        self.pathToFactorFile = config['GENERAL']['pathToFactorFile']
-        self.pathToSimulationFolder = config['GENERAL']['pathToSimulationFolder']
-        self.pathToTemplateFolder = config['GENERAL']['pathToTemplateFolder']
-
     def __parsePreProcessorConfig(self, config: configparser):
         self.planType = config['PRE_PROCESSOR']['planType']
         # settings for pydoe based plans
