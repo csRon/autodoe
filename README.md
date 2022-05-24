@@ -47,7 +47,7 @@ For the beginning just copy an existing exmample folder (e.g. helloDoE) to your 
 ### Starting automizedDoE
 Just run the following command directly inside the automizedDoE folder
 ```
-automizedDoE /path/to/your/working/folder
+python3 automizedDoE.py /path/to/your/working/folder
 ```
 All output will also be in your selected working folder.
 
@@ -66,7 +66,3 @@ The experimental plan creation is based on `pyDOE2` which is based on `pyDOE` cr
 
 ## License
 automizedDoE is licensed under the MIT license.
-
-## Contact
-If you want to contact me you can reach me at *ron.martin@posteo.net*.
-
