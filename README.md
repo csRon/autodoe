@@ -1,5 +1,7 @@
 # automizedDoE
 
+**DISCLAIMER: This project is under development and might not be fully functional.**
+
 *automizedDoE* helps you generate, process and analyze experimental plans based on Design of Experiments. 
 
 It generates experimental plans, maps the plan to your given factor values, creates a well ordered folder structure, processes given input scripts and analyzes the experiments output.
@@ -23,8 +25,9 @@ pip install -r requirements.txt
 ```
 Test you installation by running the first example `helloWorld` by running
 ```
-python3 automizedDoE.py ./examples/helloWorld
+python3 automizedDoE.py ./examples/helloDoE
 ```
+You should see some output of simulations running.
 
 ## Getting started
 It is recommended to take a look at the given examples and its *readme*'s and the documentation for more detailed explanations. 
