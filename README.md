@@ -8,8 +8,8 @@ That might help you when you want to perform parameter analyses or create statis
 ## Prerequisites
 Before you begin, ensure you have met the following requirements:
 * You have a Unix machine (Mac/Linux). Currently only tested with Ubuntu20.04
-* You have Python3 and pip3 installed on your machine.
-*  You have a command line interface or script based experiment / simulation
+* You have python3.8 or newer and pip is installed
+* You have a command line interface or script based experiment / simulation
 
 
 ## Installing automizedDoE
@@ -19,11 +19,11 @@ pip3 install automizedDoE
 ```
 Or clone the git repo directly and run the program in a virtual environment:
 ```
-git clone ...
+git clone https://github.com/csRon/automizedDoE
 cd automizedDoE
 python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+`source .venv/bin/activate
+`pip install -r requirements.txt
 ```
 
 ## Getting started
