@@ -97,6 +97,13 @@ class Processor:
                     self.workerList[workerNr] = self.__spawnWorker(pathToWorkDir, startScript)
                     testNr += 1
 
+        # check that all workers have finished
+        finishedWorkers = 0
+        while finishedWorkers < len(self.executeTests):
+            for workerNr in range(self.nWorker):
+                if not self.workerList[workerNr].is_alive():
+                    finishedWorkers += 1
+
     def __spawnWorker(self, pathToWorkDir:str, startScript:str) -> Process:
         print('\t\t\t Simulation started: %s' % pathToWorkDir)
         process = Process(target=Worker, args=(pathToWorkDir,startScript,))
