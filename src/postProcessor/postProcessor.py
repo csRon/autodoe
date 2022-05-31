@@ -21,7 +21,7 @@ class PostProcessor:
 
     def __extractResultsInSimFolder(self, pathToSimFolder:str, extractScript:str):
         # loop through all folder in simulationFolder
-        for simFolder in sorted(os.listdir(pathToSimFolder)):
+        for simFolder in sorted([int(folder) for folder in os.listdir(pathToSimFolder)]):
             pathToWorkDir = pathToSimFolder + '/' + simFolder
 
             # make current directory new workDir
