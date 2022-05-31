@@ -9,4 +9,4 @@ class Worker:
 
     def __runStartScript(self, startScript:str):
         os.chmod(startScript, 0o777)
-        subprocess.run(['./%s > simulation.log'%startScript], shell=True)
+        subprocess.run(['./%s > simulation.log 2>&1'%startScript], shell=True)

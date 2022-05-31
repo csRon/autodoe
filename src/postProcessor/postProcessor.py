@@ -33,6 +33,8 @@ class PostProcessor:
             # go back to base dir
             os.chdir('../..')
 
+            print('\t\t\tCollecting from simulationFolder/%s done'%simFolder)
+
     def __collectResults(self):
         # reads out the extracted values and writes them to the collectedResults data frame
         filteredResults = pd.read_csv('filteredResults.csv')
