@@ -6,11 +6,11 @@ class CustomPlan(ExperimentalPlan):
     def __init__(self, config):
         super().__init__(config)
 
-        self.__readPlanFromFile(config.planPath)
+        self.__readPlanFromFile(config.planCommand)
         self.convertPlanToRangeZeroOne()
         self.setFactorList()
         self.setNrTests()
-        self.__printFactorsToFile(config.pathToFactorFile)
+        self.__printFactorsToFile('factors.csv')
         self.printRawPlanToFile('rawPlan.csv')
 
     def __readPlanFromFile(self, planPath:str):

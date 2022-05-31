@@ -9,10 +9,6 @@ class Config():
         self.processing = False
         self.postProcessing = False
 
-        self.pathToParameterFile = ''
-        self.pathToFactorFile = ''
-        self.pathToSimulationFolder = ''
-
         config = configparser.ConfigParser()
         config.read('./config.conf')
 
@@ -37,12 +33,8 @@ class Config():
 
     def __parsePreProcessorConfig(self, config: configparser):
         self.planType = config['PRE_PROCESSOR']['planType']
-        # settings for pydoe based plans
-        if 'pydoe' in self.planType.lower():
-            self.planCommand = config['PRE_PROCESSOR']['planCommand']
-        # settings for custom plans
-        if 'custom' in self.planType.lower():
-            self.planPath = config['PRE_PROCESSOR']['planPath']
+        # settings for plans
+        self.planCommand = config['PRE_PROCESSOR']['planCommand']
 
     def __parseProcessorConfig(self, config: configparser):
         self.startScript = config['PROCESSOR']['startScript']
