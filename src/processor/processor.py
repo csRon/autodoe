@@ -27,7 +27,7 @@ class Processor:
     def __parseExecuteTests(self, executeTestString: str, pathToSimulationFolder: str) -> list:
         # 'all' takes all foldes inside the simulation folder regardless how their naming
         if 'all' in executeTestString.lower():
-            return sorted([int(folder) for folder in os.listdir(pathToSimulationFolder)])
+            return list(map(str, sorted([int(folder) for folder in os.listdir(pathToSimulationFolder)])))
 
         # list range input (e.g., [0:-5]) is given
         elif re.search(r'[.*:.*]', executeTestString):
