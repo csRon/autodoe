@@ -5,6 +5,8 @@ from ..config.config import Config
 from .experimentalPlans.pydoePlan import PydoePlan
 from .experimentalPlans.customPlan import CustomPlan
 from .experimentalPlans.customRawPlan import CustomRawPlan
+from .experimentalPlans.sensitivityPlan import SensitivityPlan
+
 
 class PreProcessor:
 
@@ -17,8 +19,10 @@ class PreProcessor:
             self.experimentalPlan = CustomPlan(config)
         elif config.planType == 'customRaw':
             self.experimentalPlan = CustomRawPlan(config)
-        else:
+        elif config.planType == 'pydoe':
             self.experimentalPlan = PydoePlan(config)
+        elif config.planType == 'sensitivity':
+            self.experimentalPlan = SensitivityPlan(config)
 
         self.__createSimulationFolders()
 
