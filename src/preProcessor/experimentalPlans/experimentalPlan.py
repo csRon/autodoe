@@ -1,9 +1,6 @@
 import pandas as pd
 import numpy as np
 import regex as re
-import pyDOE2 as pydoe
-import sys
-#sys.path.insert(0,"../..")
 
 # the usual import horror in python
 # https://stackoverflow.com/questions/35166821/valueerror-attempted-relative-import-beyond-top-level-package
