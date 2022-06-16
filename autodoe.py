@@ -7,7 +7,7 @@ from src.processor.processor import Processor
 from src.postProcessor.postProcessor import PostProcessor
 
 def main(argv):
-    print('automizedDoE started')
+    print('autodoe started')
 
     # get path to working dir cli input and set it to working dir
     pathToWorkingDir = str(argv[0])
@@ -24,7 +24,7 @@ def main(argv):
     if config.postProcessing == True:
         postProcessor = PostProcessor(config)
 
-    print('automizedDoE done')
+    print('autodoe done')
 
 if __name__ == "__main__":
     main(sys.argv[1:])

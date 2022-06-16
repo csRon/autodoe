@@ -1,8 +1,8 @@
-# automizedDoE
+# autodoe
 
 **DISCLAIMER: This project is under development and might not be fully functional.**
 
-*automizedDoE* helps you generate, process and analyze experimental plans based on Design of Experiments. 
+*autodoe* helps you generate, process and analyze experimental plans based on Design of Experiments. 
 
 It generates experimental plans, maps the plan to your given factor values, creates a well ordered folder structure, processes given input scripts and analyzes the experiments output.
 That might help you when you want to perform parameter analyses or create statistical significant data for machine learning based on an experiment or a simulation.
@@ -14,18 +14,18 @@ Before you begin, ensure you have met the following requirements:
 * You have a command line interface or script based experiment / simulation
 
 
-## Installing automizedDoE
+## Installing autodoe
 You can clone the git repo and run the program in a virtual environment:
 ```
-git clone https://github.com/csRon/automizedDoE
-cd automizedDoE
+git clone https://github.com/csRon/autodoe.git
+cd autodoe
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
-Test you installation by running the first example `helloWorld` by running
+Test you installation by running the first example `helloDoE` by running
 ```
-python3 automizedDoE.py ./examples/helloDoE
+python3 autodoe.py ./examples/helloDoE
 ```
 You should see some output of simulations running.
 
@@ -33,7 +33,7 @@ You should see some output of simulations running.
 It is recommended to take a look at the given examples and its *readme*'s and the documentation for more detailed explanations. 
 Some theoretical knowledge of Design of Experiments would also be advantageous.
 
-Nevertheless the basic setup of automizedDoE remains the same. 
+Nevertheless the basic setup of autodoe remains the same. 
 
 
 ### Setting up your experiment environment
@@ -44,10 +44,10 @@ A working folder must be created with the following content (in some exceptional
 
 For the beginning just copy an existing exmample folder (e.g. helloDoE) to your preferred location and modify the files based on your needs. 
 
-### Starting automizedDoE
-Just run the following command directly inside the automizedDoE folder
+### Starting autodoe
+Just run the following command directly inside the autodoe folder
 ```
-python3 automizedDoE.py /path/to/your/working/folder
+python3 autodoe.py /path/to/your/working/folder
 ```
 All output will also be in your selected working folder.
 
@@ -65,4 +65,4 @@ The experimental plan creation is based on `pyDOE2` which is based on `pyDOE` cr
 * Copyright (c) 2018, Rickard Sjögren & Daniel Svensson (`pyDOE2`)
 
 ## License
-automizedDoE is licensed under the MIT license.
+autodoe is licensed under the MIT license.
