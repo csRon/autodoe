@@ -5,7 +5,7 @@
 *autodoe* helps you generate, process and analyze experimental plans based on Design of Experiments. 
 
 It generates experimental plans, maps the plan to your given factor values, creates a well ordered folder structure, processes given input scripts and analyzes the experiments output.
-That might help you when you want to perform parameter analyses or create statistical significant data for machine learning based on an experiment or a simulation.
+That might help you when you want to perform parameter analyzes or create statistical significant data for machine learning based on an experiment or a simulation.
 
 ## Prerequisites
 Before you begin, ensure you have met the following requirements:
@@ -16,16 +16,16 @@ Before you begin, ensure you have met the following requirements:
 
 ## Installing autodoe
 You can clone the git repo and run the program in a virtual environment:
-```
+```bash
 git clone https://github.com/csRon/autodoe.git
 cd autodoe
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
-Test you installation by running the first example `helloDoE` by running
-```
-python3 autodoe.py ./examples/helloDoE
+Test you installation by running the first example `hellodoe` by running
+```bash
+python3 autodoe.py ./examples/hellodoe
 ```
 You should see some output of simulations running.
 
@@ -42,11 +42,11 @@ A working folder must be created with the following content (in some exceptional
 * `factors.csv`: file contains the factors you want to analyze with min and max values
 * `templates`: folder contains all necessary input for your experiment of simulation
 
-For the beginning just copy an existing exmample folder (e.g. helloDoE) to your preferred location and modify the files based on your needs. 
+For the beginning just copy an existing example folder (e.g. hellodoe) to your preferred location and modify the files based on your needs. 
 
 ### Starting autodoe
 Just run the following command directly inside the autodoe folder
-```
+```bash
 python3 autodoe.py /path/to/your/working/folder
 ```
 All output will also be in your selected working folder.
